@@ -1,0 +1,186 @@
+@import "tailwindcss";
+@font-face {
+  font-family: font1;
+  src: url(../public/fonts/BBHSansBartle-Regular.ttf);
+}
+@font-face {
+  font-family: font2;
+  src: url(../public/fonts/BBHSansHegarty-Regular.ttf);
+}
+@font-face {
+  font-family: font3;
+  src: url(../public/fonts/Kalam-Bold.ttf);
+}
+@font-face {
+  font-family: font4;
+  src: url(../public/fonts/Kalam-Light.ttf);
+}
+@font-face {
+  font-family: font5;
+  src: url(../public/fonts/Kalam-Regular.ttf);
+}
+@font-face {
+  font-family: font6;
+  src: url(../public/fonts/Lobster-Regular.ttf);
+}
+@font-face {
+  font-family: font7;
+  src: url(../public/fonts/Moderna-BF68dd279f8e853.otf);
+}
+@font-face {
+  font-family: font8;
+  src: url(../public/fonts/NordinRoundedRough-Regular_demo-BF67133127eaaf6.otf);
+}
+@font-face {
+  font-family: font9;
+  src: url(../public/fonts/Outsiders-Original-Demo-BF6809b03b00745.otf);
+}
+#loop {
+  display: flex;
+
+  font-size: 100px;
+  white-space: nowrap;
+  color: #ffffff;
+}
+#loop > h1 {
+  font-size: 30vh;
+  font-weight: 900;
+  font-family: "Urbanist", sans-serif;
+  animation-name: anim;
+  animation-duration: 15s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+#loop > h1 > span {
+  -webkit-text-stroke: 2.5px #ffffff;
+  color: transparent;
+  font-weight: 500;
+}
+
+@keyframes anim {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.marquee-container {
+  width: 100vw;
+  overflow: hidden;
+  background-color: #27282e;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.marquee-text {
+  display: inline-block;
+  white-space: nowrap;
+  color: white;
+  font-size: 6rem;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  animation: marquee 10s linear infinite;
+}
+.marquee-text1 {
+  display: inline-block;
+  white-space: nowrap;
+  color: white;
+  font-size: 6rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  -webkit-text-stroke: 2.5px #ffffff;
+  color: transparent;
+  animation: marquee 10s linear infinite reverse;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.text:hover {
+  -webkit-text-stroke: 2.5px #ffffff;
+}
+
+.cardMain,
+.cardThird,
+.cardSecond {
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.turn {
+  animation: marqueeTurn 5s linear infinite;
+}
+@keyframes marqueeTurn {
+  from {
+    transform: rotateZ(0deg);
+  }
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+
+.vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  display: inline-block;
+  white-space: nowrap;
+  /* letter-spacing: 5px; */
+  animation: marqueeY 5s ease-in-out infinite alternate;
+}
+.vertical-text2 {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  display: inline-block;
+  white-space: nowrap;
+  /* letter-spacing: 5px; */
+  animation: marqueeY 5s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes marqueeY {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.class-div {
+  box-sizing: border-box;
+}
+
+.avatars {
+  clip-path: polygon(
+    20% 0%,
+    0% 20%,
+    12% 52%,
+    0% 80%,
+    20% 100%,
+    49% 90%,
+    80% 100%,
+    100% 80%,
+    89% 51%,
+    100% 20%,
+    80% 0%,
+    50% 9%
+  );
+}
+
+.z-wanted {
+  z-index: 1000;
+  cursor: pointer;
+}
