@@ -87,18 +87,15 @@ function EntrancePage() {
       });
     }
 
-    // Preload all images
     preloadImages();
     ScrollTrigger.create({
       trigger: videoRef.current,
       start: "top top",
-
       endTrigger: parentRef.current,
       end: "bottom bottom",
       pin: true,
     });
 
-    // Responsive resize
     const handleResize = () => loadImages(frames.currentIndex);
     window.addEventListener("resize", handleResize);
 
@@ -111,19 +108,16 @@ function EntrancePage() {
   useGSAP(() => {
     gsap.to(page1Ref.current, {
       scrollTrigger: {
-        // scroller: parentRef.current,
         trigger: page1Ref.current,
         start: "top top",
         end: "bottom top",
         pin: true,
-
         pinSpacing: true,
         scrub: 4,
       },
     });
     gsap.to(page2Ref.current, {
       scrollTrigger: {
-        // scroller: parentRef.current,
         trigger: page2Ref.current,
         start: "top top",
         end: "bottom-=50% top",
@@ -134,7 +128,6 @@ function EntrancePage() {
     });
     gsap.to(page3Ref.current, {
       scrollTrigger: {
-        // scroller: parentRef.current,
         trigger: page3Ref.current,
         start: "top top",
         end: "bottom top",
@@ -145,7 +138,6 @@ function EntrancePage() {
     });
     gsap.to(page4Ref.current, {
       scrollTrigger: {
-        // scroller: parentRef.current,
         trigger: page4Ref.current,
         start: "top top",
         end: "bottom top",
@@ -156,7 +148,6 @@ function EntrancePage() {
     });
     gsap.to(page5Ref.current, {
       scrollTrigger: {
-        // scroller: parentRef.current,
         trigger: page5Ref.current,
         start: "top top",
         end: "bottom top",
@@ -170,14 +161,13 @@ function EntrancePage() {
       scrollTrigger: {
         trigger: ".looping",
         start: "top top+=200",
-        // endTrigger: page1Ref.current,
         end: "top top-=100",
         pin: true,
         scrub: 3,
-        // markers: true,
       },
     });
   });
+
   useGSAP(() => {
     const pages = [page1Ref, page2Ref, page3Ref, page4Ref, page5Ref];
 
@@ -231,23 +221,21 @@ function EntrancePage() {
       });
     });
   });
+
   useEffect(() => {
     const photoDiv = photoEffectDiv.current;
     const photo = photoEffect.current;
 
-    if (!photoDiv || !photo) return; // Safety check
+    if (!photoDiv || !photo) return;
 
-    // Function to get boundary dynamically
     const getBoundary = () => photoDiv.getBoundingClientRect();
 
-    // Mouse move effect
     const handleMouseMove = (e) => {
       const boundary = getBoundary();
       const mouseX = e.clientX - boundary.left;
       const mouseY = e.clientY - boundary.top;
 
-      // Calculate translation with clamping to prevent escaping outside
-      const maxX = boundary.width / 4; // or appropriate limit
+      const maxX = boundary.width / 4;
       const maxY = boundary.height / 4;
 
       const translateX = Math.max(
@@ -267,7 +255,6 @@ function EntrancePage() {
       });
     };
 
-    // Reset on leave
     const handleMouseLeave = () => {
       gsap.to(photo, {
         x: 0,
@@ -277,11 +264,9 @@ function EntrancePage() {
       });
     };
 
-    // Add event listeners
     photoDiv.addEventListener("mousemove", handleMouseMove);
     photoDiv.addEventListener("mouseleave", handleMouseLeave);
 
-    // Cleanup
     return () => {
       photoDiv.removeEventListener("mousemove", handleMouseMove);
       photoDiv.removeEventListener("mouseleave", handleMouseLeave);
@@ -362,7 +347,6 @@ function EntrancePage() {
             className="w-full h-screen sticky top-0 z-40  "
           ></canvas>
 
-          {/* PAGE 1 */}
           <div ref={page1Ref} className="w-screen h-screen relative z-20">
             <div className="w-full h-full absolute z-40 text-4xl text-white gap-4">
               <h1 className="font-[font2] text-5xl leading-15 ml-5 mt-40">
@@ -390,7 +374,6 @@ function EntrancePage() {
             </div>
           </div>
 
-          {/* PAGE 2 */}
           <div ref={page2Ref} className="w-screen h-screen relative z-20">
             <div className="w-full h-full absolute z-40 text-4xl text-white gap-4">
               <h1 className="font-[font2] text-5xl leading-15 ml-5 mt-40">
@@ -417,7 +400,6 @@ function EntrancePage() {
             </div>
           </div>
 
-          {/* PAGE 3 */}
           <div ref={page3Ref} className="w-screen h-screen relative z-20">
             <div className="w-full h-full absolute z-40 text-4xl text-white gap-4">
               <h1 className="font-[font2] text-5xl leading-15 ml-5 mt-40">
@@ -444,7 +426,6 @@ function EntrancePage() {
             </div>
           </div>
 
-          {/* PAGE 4 */}
           <div ref={page4Ref} className="w-screen h-screen relative z-20">
             <div className="w-full h-full absolute z-40 text-4xl text-white gap-4">
               <h1 className="font-[font2] text-5xl leading-15 ml-5 mt-40">
@@ -470,7 +451,6 @@ function EntrancePage() {
             </div>
           </div>
 
-          {/* PAGE 5 */}
           <div ref={page5Ref} className="w-screen h-screen relative z-20">
             <div className="w-full h-full absolute z-40 text-4xl text-white gap-4">
               <h1 className="font-[font2] text-5xl leading-15 ml-5 mt-40">
@@ -511,7 +491,6 @@ function EntrancePage() {
           ></div>
         </div>
 
-        {/* Marquee Layer 1 */}
         <div className="marquee-container  bg-black">
           <div className="marquee-text font-[font1]">
             CYBER FICTION IS FOR REAL ONE DAMNNN !!!
@@ -524,7 +503,6 @@ function EntrancePage() {
           </div>
         </div>
 
-        {/* Marquee Layer 2 */}
         <div className="marquee-container">
           <div className="marquee-text1 font-[font1] z-40">
             CYBER FICTION IS FOR REAL ONE DAMNNN !!!
@@ -537,7 +515,6 @@ function EntrancePage() {
           </div>
         </div>
 
-        {/* Marquee Layer 3 */}
         <div className="marquee-container">
           <div className="marquee-text font-[font1]">
             CYBER FICTION IS FOR REAL ONE DAMNNN !!!

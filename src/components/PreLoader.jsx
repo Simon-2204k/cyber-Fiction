@@ -16,17 +16,14 @@ function PreLoader() {
     const scaleCard = 1;
     const easeCgi = { duration: 0.6, ease: "power3.out" };
 
-    // mapRange helper
     const mapRange = (v, a1, a2, b1, b2) =>
       ((v - a1) * (b2 - b1)) / (a2 - a1) + b1;
 
-    // store all cleanup functions
     const cleanupFns = [];
 
     allCards.forEach((card) => {
       if (!card) return;
 
-      // ✅ Move
       const onMove = (e) => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
@@ -56,12 +53,10 @@ function PreLoader() {
         });
       };
 
-      // ✅ Enter
       const onEnter = () => {
         gsap.to(card, { scale: scaleCard, ...easeCgi });
       };
 
-      // ✅ Leave
       const onLeave = () => {
         gsap.to(card, {
           rotateX: 0,
@@ -72,12 +67,10 @@ function PreLoader() {
         card.style.transformStyle = "preserve-3d";
       };
 
-      // ✅ Attach events
       card.addEventListener("pointermove", onMove);
       card.addEventListener("pointerenter", onEnter);
       card.addEventListener("pointerleave", onLeave);
 
-      // ✅ Add cleanup function
       cleanupFns.push(() => {
         card.removeEventListener("pointermove", onMove);
         card.removeEventListener("pointerenter", onEnter);
@@ -85,7 +78,6 @@ function PreLoader() {
       });
     });
 
-    // ✅ Proper cleanup for React
     return () => cleanupFns.forEach((fn) => fn());
   }, []);
 

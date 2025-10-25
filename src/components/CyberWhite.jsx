@@ -1,4 +1,3 @@
-// import { useGSAP } from "@gsap/react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger, SplitText } from "gsap/all";
@@ -31,11 +30,9 @@ const CyberWhite = () => {
         const imageUrl = `/page2images/male${i
           .toString()
           .padStart(4, "0")}.png`;
-        // console.log(imageUrl);
 
         let imgDiv = new Image();
         imgDiv.src = imageUrl;
-        // console.log(imgDiv);
         imgDiv.onload = () => {
           imageLoaded++;
           if (imageLoaded === framesImage.lastImage) {
@@ -81,9 +78,8 @@ const CyberWhite = () => {
           start: "top top",
           endTrigger: parentRef2.current,
           end: "bottom bottom",
-
           scrub: 3,
-          invalidateOnRefresh: true, // ensures resizing doesn't break
+          invalidateOnRefresh: true,
         },
       });
     }
@@ -94,48 +90,40 @@ const CyberWhite = () => {
   useGSAP(() => {
     gsap.to(page1Ref.current, {
       scrollTrigger: {
-        // scroller: parentRef.current,
         trigger: page1Ref.current,
         start: "top top",
         end: "bottom top",
         pin: true,
-
         pinSpacing: true,
         scrub: 3,
       },
     });
     gsap.to(page2Ref.current, {
       scrollTrigger: {
-        // scroller: parentRef.current,
         trigger: page2Ref.current,
         start: "top top",
         end: "bottom top",
         pin: true,
-
         pinSpacing: true,
         scrub: 3,
       },
     });
     gsap.to(page3Ref.current, {
       scrollTrigger: {
-        // scroller: parentRef.current,
         trigger: page3Ref.current,
         start: "top top",
         end: "bottom top",
         pin: true,
-
         pinSpacing: true,
         scrub: 3,
       },
     });
     gsap.to(page4Ref.current, {
       scrollTrigger: {
-        // scroller: parentRef.current,
         trigger: page4Ref.current,
         start: "top top",
         end: "bottom top",
         pin: true,
-
         pinSpacing: true,
         scrub: 3,
       },
@@ -148,11 +136,9 @@ const CyberWhite = () => {
     gsap.to(frames, {
       startingImg: frames.endingImg - 1,
       scrollTrigger: {
-        // scroller: ".mainDiv",
         trigger: imageRef.current,
         start: "top-=100 top",
         end: "bottom top+=100",
-        // markers: true,
         pin: ".mainDiv",
         scrub: true,
         onUpdate: () => {
@@ -177,16 +163,13 @@ const CyberWhite = () => {
 
       ScrollTrigger.create({
         trigger: page,
-        start: "top 80%", // triggers when page is roughly in view
-        // markers: true,
+        start: "top 80%",
         onEnter: () => {
-          // Split text
           const splitH1 = new SplitText(h1, { type: "chars" });
           const splitPs = Array.from(pElements).map(
             (p) => new SplitText(p, { type: "words" })
           );
 
-          // Timeline animation
           const tl = gsap.timeline();
           tl.from(splitH1.chars, {
             opacity: 0,
@@ -263,7 +246,6 @@ const CyberWhite = () => {
             <canvas ref={canvasRef2} className="h-screen w-full"></canvas>
           </div>
 
-          {/* Pages */}
           <div
             ref={page1Ref}
             className="relative page1 w-screen h-[100vh] bg-gradient-to-b from-green-400 to-white"
@@ -349,9 +331,6 @@ const CyberWhite = () => {
               CYB FIC
             </h1>
           </div>
-          {/* <div className=" absolute top-[100vh] h-[200vh] w-screen bg-amber-950">
-            hello
-          </div> */}
         </div>
       </div>
     </>
