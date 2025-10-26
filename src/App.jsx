@@ -22,13 +22,15 @@ const App = () => {
 
   return (
     <div>
-      {openWebsite === false && <PageSize></PageSize>}
-
-      <Routes>
-        <Route path="/entrance" element={<EntrancePage />} />
-        <Route path="/" element={<PreLoader />} />
-        <Route path="/cyber" element={<CyberWhite />} />
-      </Routes>
+      {openWebsite === false ? (
+        <PageSize />
+      ) : (
+        <Routes>
+          <Route path="/entrance" element={<EntrancePage />} />
+          <Route path="/" element={<PreLoader />} />
+          <Route path="/cyber" element={<CyberWhite />} />
+        </Routes>
+      )}
     </div>
   );
 };

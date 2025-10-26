@@ -153,50 +153,52 @@ const CyberWhite = () => {
   useGSAP(() => {
     const pages = [page1Ref, page2Ref, page3Ref, page4Ref];
 
-    pages.forEach((ref) => {
-      const page = ref.current;
-      if (!page) return;
+    // Wait for all fonts to load first
+    document.fonts.ready.then(() => {
+      pages.forEach((ref) => {
+        const page = ref.current;
+        if (!page) return;
 
-      const h1 = page.querySelector("h1");
-      const pElements = page.querySelectorAll("p");
-      if (!h1) return;
+        const h1 = page.querySelector("h1");
+        const pElements = page.querySelectorAll("p");
+        if (!h1) return;
 
-      ScrollTrigger.create({
-        trigger: page,
-        start: "top 80%",
-        onEnter: () => {
-          const splitH1 = new SplitText(h1, { type: "chars" });
-          const splitPs = Array.from(pElements).map(
-            (p) => new SplitText(p, { type: "words" })
-          );
-
-          const tl = gsap.timeline();
-          tl.from(splitH1.chars, {
-            opacity: 0,
-            y: 50,
-            stagger: 0.05,
-            duration: 1,
-            ease: "back.out(1.7)",
-          });
-
-          splitPs.forEach((splitP) => {
-            tl.from(
-              splitP.words,
-              {
-                opacity: 0,
-                y: 30,
-                stagger: 0.2,
-                duration: 0.8,
-                ease: "power2.out",
-              },
-              "-=0.5"
+        ScrollTrigger.create({
+          trigger: page,
+          start: "top 80%",
+          onEnter: () => {
+            const splitH1 = new SplitText(h1, { type: "chars" });
+            const splitPs = Array.from(pElements).map(
+              (p) => new SplitText(p, { type: "words" })
             );
-          });
-        },
+
+            const tl = gsap.timeline();
+            tl.from(splitH1.chars, {
+              opacity: 0,
+              y: 50,
+              stagger: 0.05,
+              duration: 1,
+              ease: "back.out(1.7)",
+            });
+
+            splitPs.forEach((splitP) => {
+              tl.from(
+                splitP.words,
+                {
+                  opacity: 0,
+                  y: 30,
+                  stagger: 0.2,
+                  duration: 0.8,
+                  ease: "power2.out",
+                },
+                "-=0.5"
+              );
+            });
+          },
+        });
       });
     });
   });
-
   return (
     <>
       <div className="  class-div relative left-0 h-screen w-full bg-zinc-200 ">

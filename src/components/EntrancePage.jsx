@@ -171,57 +171,58 @@ function EntrancePage() {
   useGSAP(() => {
     const pages = [page1Ref, page2Ref, page3Ref, page4Ref, page5Ref];
 
-    pages.forEach((pageRef) => {
-      const container = pageRef.current;
+    document.fonts.ready.then(() => {
+      pages.forEach((pageRef) => {
+        const container = pageRef.current;
 
-      const h1s = container.querySelectorAll("h1");
-      h1s.forEach((h1) => {
-        const split = new SplitText(h1, { type: "lines" });
-        gsap.from(split.lines, {
+        const h1s = container.querySelectorAll("h1");
+        h1s.forEach((h1) => {
+          const split = new SplitText(h1, { type: "lines" });
+          gsap.from(split.lines, {
+            opacity: 0,
+            y: 20,
+            stagger: { each: 0.2, from: "random" },
+            duration: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: container,
+              start: "top center",
+              end: "top top",
+            },
+          });
+        });
+
+        const paragraphs = container.querySelectorAll("p");
+        paragraphs.forEach((p, i) => {
+          const split = new SplitText(p, { type: "lines" });
+          gsap.from(split.lines, {
+            opacity: 0,
+            y: -50,
+            stagger: 0.2,
+            duration: 1,
+            ease: "power2.out",
+            delay: i * 0.5,
+            scrollTrigger: {
+              trigger: container,
+              start: "top center",
+              end: "top top",
+            },
+          });
+        });
+
+        gsap.to(container.querySelectorAll("h1, p"), {
           opacity: 0,
-          y: 20,
-          stagger: { each: 0.2, from: "random" },
-          duration: 1,
-          ease: "power2.out",
+          y: -20,
           scrollTrigger: {
             trigger: container,
-            start: "top center",
-            end: "top top",
+            start: "bottom center",
+            end: "bottom top",
+            scrub: true,
           },
         });
-      });
-
-      const paragraphs = container.querySelectorAll("p");
-      paragraphs.forEach((p, i) => {
-        const split = new SplitText(p, { type: "lines" });
-        gsap.from(split.lines, {
-          opacity: 0,
-          y: -50,
-          stagger: 0.2,
-          duration: 1,
-          ease: "power2.out",
-          delay: i * 0.5,
-          scrollTrigger: {
-            trigger: container,
-            start: "top center",
-            end: "top top",
-          },
-        });
-      });
-
-      gsap.to(container.querySelectorAll("h1, p"), {
-        opacity: 0,
-        y: -20,
-        scrollTrigger: {
-          trigger: container,
-          start: "bottom center",
-          end: "bottom top",
-          scrub: true,
-        },
       });
     });
   });
-
   useEffect(() => {
     const photoDiv = photoEffectDiv.current;
     const photo = photoEffect.current;
